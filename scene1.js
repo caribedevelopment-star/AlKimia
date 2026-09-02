@@ -1,14 +1,12 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'https://unpkg.com/three@0.179.1/examples/jsm/loaders/GLTFLoader.js';
-import { mergeGeometries } from 'https://unpkg.com/three@0.179.1/examples/jsm/utils/BufferGeometryUtils.js';
 
-const SCENE_CHUNKS = 12;
-const PERSON_CHUNKS = 4;
+const SCENE_CHUNKS = 15;
+const PERSON_CHUNKS = 5;
 const MOBILE = matchMedia('(max-width: 820px)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
-async function loadChunkedGlb(prefix, count) {
+async function loadAkm(prefix, count) {
   const parts = await Promise.all(
     Array.from({ length: count }, (_, i) =>
       fetch(`/assets/scene1/${prefix}.${String(i + 1).padStart(3, '0')}.b64`, { cache: 'force-cache' })
@@ -25,36 +23,29 @@ async function loadChunkedGlb(prefix, count) {
       new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'))
     ).arrayBuffer()
   );
-  const url = URL.createObjectURL(new Blob([bytes], { type: 'model/gltf-binary' }));
-  try {
-    return await new GLTFLoader().loadAsync(url);
-  } finally {
-    URL.revokeObjectURL(url);
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (String.fromCharCode(...bytes.slice(0, 4)) !== 'AKM1') throw new Error('Invalid AlKimia geometry');
+  const vertexCount = view.getUint32(4, true);
+  const faceCount = view.getUint32(8, true);
+  const min = [view.getFloat32(12, true), view.getFloat32(16, true), view.getFloat32(20, true)];
+  const scale = [view.getFloat32(24, true), view.getFloat32(28, true), view.getFloat32(32, true)];
+  let offset = 36;
+  const positions = new Float32Array(vertexCount * 3);
+  for (let i = 0; i < vertexCount * 3; i++) {
+    const q = view.getInt16(offset + i * 2, true);
+    const axis = i % 3;
+    positions[i] = min[axis] + ((q + 32768) / 65535) * scale[axis];
   }
-}
-
-function mergeSceneGeometry(root) {
-  root.updateMatrixWorld(true);
-  const pieces = [];
-  root.traverse(obj => {
-    if (!obj.isMesh || !obj.geometry?.attributes?.position) return;
-    let g = obj.geometry.clone();
-    g.applyMatrix4(obj.matrixWorld);
-    g.deleteAttribute('normal');
-    g.deleteAttribute('uv');
-    g.deleteAttribute('uv1');
-    g.deleteAttribute('color');
-    g.deleteAttribute('tangent');
-    if (g.index) g = g.toNonIndexed();
-    pieces.push(g);
-  });
-  if (!pieces.length) throw new Error('No mesh geometry found in GLB');
-  const merged = mergeGeometries(pieces, false);
-  pieces.forEach(g => g.dispose());
-  merged.computeVertexNormals();
-  merged.computeBoundingBox();
-  merged.computeBoundingSphere();
-  return merged;
+  offset += vertexCount * 3 * 2;
+  const indices = new Uint32Array(faceCount * 3);
+  for (let i = 0; i < faceCount * 3; i++) indices[i] = view.getUint32(offset + i * 4, true);
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setIndex(new THREE.BufferAttribute(indices, 1));
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
+  return geometry;
 }
 
 function seeded(seed = 1337) {
@@ -133,13 +124,10 @@ async function buildConcert(shell) {
   rig.add(camera);
   scene.add(rig);
 
-  const [envGltf, personGltf] = await Promise.all([
-    loadChunkedGlb('scene', SCENE_CHUNKS),
-    loadChunkedGlb('person', PERSON_CHUNKS)
+  const [envGeo, personGeoRaw] = await Promise.all([
+    loadAkm('scene', SCENE_CHUNKS),
+    loadAkm('person', PERSON_CHUNKS)
   ]);
-
-  const envGeo = mergeSceneGeometry(envGltf.scene);
-  const personGeoRaw = mergeSceneGeometry(personGltf.scene);
 
   const envBox = envGeo.boundingBox.clone();
   const envCenter = envBox.getCenter(new THREE.Vector3());
