@@ -13,7 +13,8 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.179.1/build/three.module.js"
+      "three": "https://unpkg.com/three@0.179.1/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.179.1/examples/jsm/"
     }
   }
   </script>
@@ -31,7 +32,7 @@
         <h1>AL.KIM.IA</h1>
         <div class="memory-label">MEMORY 01 · THE ENCOUNTER</div>
         <p>Una historia contada como materia, espacio, música y memoria.</p>
-        <button id="enter">ENTER</button>
+        <button id="enter" disabled aria-busy="true">ENTER</button>
       </div>
     </section>
 
@@ -54,8 +55,7 @@
     <div id="fallback" class="fallback hidden">Esta memoria necesita WebGL para abrirse.</div>
   </main>
 
-  <script type="module" src="/scene1-preserve.js?v=20260902d"></script>
-  <script type="module" src="/app.js"></script>
+  <script type="module" src="/app.js?v=20260904b"></script>
   <script>
     if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
   </script>

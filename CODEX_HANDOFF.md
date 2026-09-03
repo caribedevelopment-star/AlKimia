@@ -4,12 +4,17 @@
 
 Al.Kim.ia is an intimate interactive web experience for Kim. It should feel like a short cinematic poem you can walk through, not a conventional game. Target experience length for the birthday build: roughly 5–8 minutes.
 
-The emotional arc currently planned:
-1. **Concert / The Encounter** — among thousands, the two entes find each other.
-2. **Portal** — concert falls away; a cinematic transition takes control.
-3. **Meadow** — the visual centerpiece: huge sky, flowers/lavender, wind, fog, light, particles, season/climate change.
-4. **Ascension** — entities and particles rise through flowers/clouds; gravity becomes poetic.
-5. **Final** — abstract, restrained, emotional ending.
+The canonical emotional arc is longer and must not be shortened:
+1. **Concert / The Encounter** — among thousands, Ale finds Kim and the surrounding noise falls away.
+2. **The Room / The Door** — an intimate interior space; opening the portal represents opening himself to feeling.
+3. **The Journey / The Growing World** — they cross a landscape that transforms from dry earth to winter, green life and finally lavender as they remain together.
+4. **The Meadow / Ascension** — the relationship reaches its luminous height; flowers, matter and both entes lose gravity and rise through the clouds.
+5. **The Fracture / The Fall** — the shared form breaks because Ale hurts Kim. Kim remains above while Ale falls into a psychological hell.
+6. **The Storm / Her Return** — broken architecture, dead lavender and distorted fragments of earlier memories embody regret. Ale cannot create his own exit. Kim returns through the storm, touches him and makes an exit possible without erasing what happened.
+7. **The Reunion** — in a quiet, rainy mirror-water landscape they approach again. Their scars remain visible; the new union is deeper, not a reset to innocence.
+8. **Genesis / Big Bang** — suspended rain and fragments of every memory orbit them; both dissolve into one sphere, silence, then an expansion that creates stars and a new universe. End in darkness without a conventional “THE END”.
+
+This is a single-player experience controlling Ale. Kim is an authored narrative companion, not a second networked player. Progress should come from movement, proximity, remaining together and touch—not chapter menus or permanent “next” buttons.
 
 The user explicitly wants the birthday build finished for **12 September 2026**.
 

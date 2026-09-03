@@ -26,6 +26,7 @@ h1{margin:0;font-size:clamp(68px,15vw,190px);font-weight:950;letter-spacing:-.08
 .screen p{max-width:520px;margin:20px auto 28px;font-size:13px;line-height:1.8;color:var(--muted)}
 #enter{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.025);color:var(--paper);padding:14px 32px;border-radius:999px;font-size:10px;font-weight:850;letter-spacing:.35em;cursor:pointer;transition:.25s ease}
 #enter:hover{border-color:rgba(255,164,69,.88);box-shadow:0 0 35px rgba(255,130,35,.14);transform:translateY(-1px)}
+#enter:disabled{opacity:.38;cursor:wait;transform:none;box-shadow:none}
 .hud{position:fixed;inset:0;z-index:8;pointer-events:none;transition:opacity .6s}
 .brand{position:absolute;left:max(22px,env(safe-area-inset-left));top:max(20px,env(safe-area-inset-top));font-size:15px;font-weight:950;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 1px 24px rgba(0,0,0,.45)}
 .proximity{position:absolute;top:max(27px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:92px;height:1px;background:rgba(255,255,255,.07);overflow:hidden;opacity:.72}
