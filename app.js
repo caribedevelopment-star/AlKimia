@@ -1,5 +1,5 @@
 try {
-  await import('/runtime.js?v=20260904b');
+  await import('/runtime.js?v=20260904d');
 } catch (error) {
   console.error('Al.Kim.ia runtime failed to load.', error);
   const fallback = document.querySelector('#fallback');

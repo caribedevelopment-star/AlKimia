@@ -28,17 +28,27 @@
 
     <section id="intro" class="screen">
       <div class="screen-inner">
-        <div class="kicker">AN INTERACTIVE MEMORY</div>
+        <div class="kicker">UNA MEMORIA INTERACTIVA</div>
         <h1>AL.KIM.IA</h1>
-        <div class="memory-label">MEMORY 01 · THE ENCOUNTER</div>
+        <div class="memory-label">EL VIAJE EMPIEZA AQUÍ</div>
         <p>Una historia contada como materia, espacio, música y memoria.</p>
         <button id="enter" disabled aria-busy="true">ENTER</button>
       </div>
     </section>
 
-    <div id="chapter" class="chapter hidden">
-      <span id="chapterIndex">MEMORY 01</span>
-      <strong id="chapterTitle">THE ENCOUNTER</strong>
+    <div id="narration" class="narration hidden" role="status" aria-live="polite">
+      <p id="narrationText"></p>
+    </div>
+
+    <div id="memoryEcho" class="memory-echo hidden" aria-hidden="true"></div>
+
+    <div id="relicProgress" class="relic-progress hidden" aria-label="Recuerdos encontrados">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div id="finalMark" class="final-mark hidden" aria-hidden="true">
+      <span class="final-star"></span>
+      <strong>AL.KIM.IA</strong>
     </div>
 
     <div id="hud" class="hud hidden">
@@ -55,7 +65,7 @@
     <div id="fallback" class="fallback hidden">Esta memoria necesita WebGL para abrirse.</div>
   </main>
 
-  <script type="module" src="/app.js?v=20260904b"></script>
+  <script type="module" src="/app.js?v=20260904d"></script>
   <script>
     if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
   </script>

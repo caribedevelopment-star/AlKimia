@@ -1,32 +1,50 @@
 # Al.Kim.ia
 
-Private cinematic real-time memory experience built for the browser.
+Experiencia privada de memoria cinematográfica en tiempo real para navegador.
 
-## Current production sequence
-1. Memory 01 — The Encounter
-2. Memory 02 — The Room / Portal
-3. Memory Transition — Time Tunnel
-4. Memory 03 — The Meadow
-5. Spring Reveal
-6. Memory 04 — The Ascension
-7. Interlude — Above the Clouds
-8. Memory 05 — The Fracture / The Fall
-9. After the Fall — The Storm
-10. Kim Returns / The Touch
-11. Memory 06 — The Reunion
-12. Final Memory — Genesis / Big Bang
+## Secuencia de producción
 
-## Visual direction
-Al.Kim.ia combines cinematic real-time lighting, generative behavior, sculpture, architecture, climate and memory. The experience is intentionally abstract rather than literal.
+La obra es continua y no muestra títulos de escena al usuario. Internamente recorre:
 
-## Entity source
-`PERSONAJE.glb` is the authoritative sculptural source for the final hero pass. Until that original binary is placed in the workspace, the browser build uses unified implicit Marching Cubes entities so the complete narrative can be tested without pretending the approximation is final.
+1. Concierto / despertar
+2. Habitación / intimidad
+3. Portal / sombras
+4. Desierto / miedo
+5. Nieve / distancia
+6. Campo verde / reliquias
+7. Lavanda / revelación
+8. Ascensión
+9. Caída
+10. Tormenta / consecuencia
+11. Disculpa
+12. Aceptación
+13. Transformación real
+14. Reencuentro a distancia
+15. La esfera / el tesoro
+16. Big Bang / epílogo
+
+Kim no rescata a Ale y los personajes no se fusionan. Ale atraviesa solo la caída, la tormenta, la disculpa, la aceptación y su transformación interior. El reencuentro conserva distancia e incertidumbre.
+
+## Narración
+
+`story.js` contiene el orden canónico y los diálogos literales. No deben reescribirse, resumirse ni acompañarse con títulos de escena visibles.
+
+## Dirección visual
+
+Al.Kim.ia combina iluminación cinematográfica en tiempo real, comportamiento generativo, escultura, arquitectura, clima y memoria. La experiencia es abstracta, continua y emocionalmente intencional, no una colección de niveles o demos WebGL.
+
+## Fuentes 3D pendientes
+
+`PERSONAJE.glb` es la fuente escultórica autoritativa de los entes y `ESCENA 1.glb` la geometría autoritativa del concierto. Ninguno de los dos binarios está actualmente en el repositorio/workspace. La build usa geometría procedural para poder probar el arco completo, pero no debe considerarse el pase final de fidelidad de personajes o estadio.
 
 ## Audio
-A lawful private track can be added locally and referenced with `data-audio-src` on the root `<html>` element. Without it, the experience uses its built-in generative soundscape and makes no missing-file request. The public repository does not include commercial music.
 
-## Production rules
-- One repository: `caribedevelopment-star/AlKimia`
-- `main` is production
-- One existing Vercel project only; do not create versioned projects
-- Do not touch Atlas or Bobbio-Russian
+Una pista privada con los derechos correspondientes puede añadirse localmente mediante `data-audio-src` en el elemento `<html>`. Sin ella, la experiencia usa su paisaje sonoro generativo y no realiza peticiones a un archivo ausente. El repositorio público no incluye música comercial.
+
+## Producción
+
+- Repositorio único: `caribedevelopment-star/AlKimia`.
+- `main` es producción.
+- Proyecto Vercel existente: `al.kim.ia`; no crear proyectos versionados o alternativos.
+- URL canónica: <https://al-kim-ia-v5.vercel.app>.
+- No tocar Atlas ni Bobbio-Russian.
